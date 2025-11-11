@@ -1,22 +1,27 @@
 add_rules("mode.debug", "mode.release")
 
-target("tiny-blas")
-    set_kind("binary")
-    add_files("src/*.cu")
+-- target("tiny-blas")
+--     set_kind("binary")
+--     add_files("src/*.cu", "src/transpose/*.cu")
 
-    -- generate SASS code for SM architecture of current host
-    add_cugencodes("native")
-    add_links("cublas")
+--     -- generate SASS code for SM architecture of current host
+--     add_cugencodes("native")
+--     add_links("cublas")
 
-    -- generate PTX code for the virtual architecture to guarantee compatibility
-    add_cugencodes("compute_75")
+--     -- generate PTX code for the virtual architecture to guarantee compatibility
+--     add_cugencodes("compute_75")
 
     -- -- generate SASS code for each SM architecture
     -- add_cugencodes("sm_35", "sm_37", "sm_50", "sm_52", "sm_60", "sm_61", "sm_70", "sm_75")
 
     -- -- generate PTX code from the highest SM architecture to guarantee forward-compatibility
     -- add_cugencodes("compute_75")
-
+target("transpose")
+    set_kind("binary") -- 可执行文件
+    add_files("src/transpose/*.cu") -- transpose 的源文件
+    add_links("cublas") -- 链接 cuBLAS 库
+    add_cugencodes("native") -- 生成 SASS 代码
+    add_cugencodes("compute_75") -- 生成 PTX 代码
 --
 -- If you want to known more usage about xmake, please see https://xmake.io
 --
