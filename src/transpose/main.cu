@@ -35,17 +35,17 @@ int main(){
     dim3 threadsPerBlock(32,32);
     dim3 blockPerGrid((rows+32-1) / 32,(cols+32-1) / 32);
 
-    CUDA_CHECK(cudaMalloc((void **)&d_input, rows * cols * sizeof(float)));
-    CUDA_CHECK(cudaMalloc((void **)&d_output, rows * cols * sizeof(float)));
+    cudaMalloc((void **)&d_input, rows * cols * sizeof(float));
+    cudaMalloc((void **)&d_output, rows * cols * sizeof(float));
 
-    CUDA_CHECK(cudaMemcpy((void *)d_input, h_input.data(), rows * cols * sizeof(float), cudaMemcpyHostToDevice));
-    CUDA_CHECK(cudaMemcpy((void *)d_output, h_output.data(), rows * cols *sizeof(float), cudaMemcpyHostToDevice));
+    cudaMemcpy((void *)d_input, h_input.data(), rows * cols * sizeof(float), cudaMemcpyHostToDevice);
+    cudaMemcpy((void *)d_output, h_output.data(), rows * cols *sizeof(float), cudaMemcpyHostToDevice);
 
     transpose_cublas(h_input.data(), h_output_cublas.data(), rows, cols);
-    cudaDeviceSynchronize();
     transpose_v1<<<threadsPerBlock,blockPerGrid>>>(d_input, d_output, rows, cols);
-    
-    CUDA_CHECK(cudaMemcpy(h_output.data(), d_output, rows * cols *sizeof(float), cudaMemcpyDeviceToHost));
+    cudaDeviceSynchronize();
+
+    cudaMemcpy(h_output.data(), d_output, rows * cols *sizeof(float), cudaMemcpyDeviceToHost);
 
     float error = 0;
     bool tmp = true;
