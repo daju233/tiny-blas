@@ -25,8 +25,8 @@ int main(){
 
     // int rows = 16384; 
     // int cols = 16384; 
-    int rows = 1024; 
-    int cols = 1024; 
+    int rows = 1920; 
+    int cols = 1080; 
     
     std::vector<float> h_input(rows * cols);
     std::vector<float> h_output(rows * cols);
@@ -45,7 +45,7 @@ int main(){
     transpose_cublas(h_input.data(), h_output_cublas.data(), rows, cols, &cublas_milliseconds);
 
     dim3 threadsPerBlock(32,32);
-    dim3 blockPerGrid((rows+32-1) / 32,(cols+32-1) / 32); 
+    dim3 blockPerGrid((cols+32-1) / 32,(rows+32-1) / 32); 
     // cudaMemGetInfo(&free_mem, &total_mem);
     // printf("Before cudaMalloc: Free memory: %zu bytes, Total memory: %zu bytes\n", free_mem, total_mem);
 
