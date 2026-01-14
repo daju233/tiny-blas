@@ -30,6 +30,13 @@ target("bandwidth-test")
     add_links("cublas") -- 链接 cuBLAS 库
     add_cugencodes("native") -- 生成 SASS 代码
     add_cugencodes("compute_75") -- 生成 PTX 代码
+
+target("sgemm")
+    set_kind("binary") -- 可执行文件
+    add_files("src/sgemm/*.cu") -- transpose 的源文件
+    add_links("cublas") -- 链接 cuBLAS 库
+    add_cugencodes("native") -- 生成 SASS 代码
+    add_cugencodes("compute_75") -- 生成 PTX 代码
 --
 -- If you want to known more usage about xmake, please see https://xmake.io
 --

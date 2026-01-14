@@ -8,4 +8,19 @@
   "directory": "/home/maxwell/Documents/Pracitce/tiny-blas",
   "arguments": ["/usr/local/cuda/bin/nvcc", "-c", "-Xcompiler", "-fPIE", "-O3", "-I/usr/local/cuda/include", "-m64", "-rdc=true", "-gencode", "arch=compute_75,code=sm_75", "-gencode", "arch=compute_75,code=compute_75", "-DNDEBUG", "-o", "build/.objs/bandwidth-test/linux/x86_64/release/src/bandwidth-test/bandwidth_test.cu.o", "src/bandwidth-test/bandwidth_test.cu"],
   "file": "src/bandwidth-test/bandwidth_test.cu"
+},
+{
+  "directory": "/home/maxwell/Documents/Pracitce/tiny-blas",
+  "arguments": ["/usr/local/cuda/bin/nvcc", "-c", "-Xcompiler", "-fPIE", "-O3", "-I/usr/local/cuda/include", "-m64", "-rdc=true", "-gencode", "arch=compute_75,code=sm_75", "-gencode", "arch=compute_75,code=compute_75", "-DNDEBUG", "-o", "build/.objs/sgemm/linux/x86_64/release/src/sgemm/main.cu.o", "src/sgemm/main.cu"],
+  "file": "src/sgemm/main.cu"
+},
+{
+  "directory": "/home/maxwell/Documents/Pracitce/tiny-blas",
+  "arguments": ["/usr/local/cuda/bin/nvcc", "-c", "-Xcompiler", "-fPIE", "-O3", "-I/usr/local/cuda/include", "-m64", "-rdc=true", "-gencode", "arch=compute_75,code=sm_75", "-gencode", "arch=compute_75,code=compute_75", "-DNDEBUG", "-o", "build/.objs/sgemm/linux/x86_64/release/src/sgemm/sgemm_cublas.cu.o", "src/sgemm/sgemm_cublas.cu"],
+  "file": "src/sgemm/sgemm_cublas.cu"
+},
+{
+  "directory": "/home/maxwell/Documents/Pracitce/tiny-blas",
+  "arguments": ["/usr/local/cuda/bin/nvcc", "-c", "-Xcompiler", "-fPIE", "-O3", "-I/usr/local/cuda/include", "-m64", "-rdc=true", "-gencode", "arch=compute_75,code=sm_75", "-gencode", "arch=compute_75,code=compute_75", "-DNDEBUG", "-o", "build/.objs/sgemm/linux/x86_64/release/src/sgemm/my_sgemm.cu.o", "src/sgemm/my_sgemm.cu"],
+  "file": "src/sgemm/my_sgemm.cu"
 }]

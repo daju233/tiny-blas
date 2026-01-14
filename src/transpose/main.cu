@@ -37,7 +37,7 @@ int main(){
 
     for(int i = 0; i < rows; ++i){
         for(int j = 0; j < cols; ++j){
-            h_input[rows * i + j]= dist(gen);
+            h_input[i * cols + j]= dist(gen);
         }
     }
 
@@ -58,7 +58,7 @@ int main(){
     CUDA_CHECK(cudaMemcpy(d_output, h_output.data(), rows * cols *sizeof(float), cudaMemcpyHostToDevice));
 
     for(int i=0; i< WARMLOOP; ++i){
-        transpose_v2<<<blockPerGrid,threadsPerBlock>>>(d_input, d_output, rows, cols);
+        transpose_v3<<<blockPerGrid,threadsPerBlock>>>(d_input, d_output, rows, cols);
     }
 
     cudaEvent_t start, stop;
@@ -97,8 +97,8 @@ int main(){
     {
         printf("kernel output all right\n");
     }
-    cudaFree(&d_input);
-    cudaFree(&d_output);
+    cudaFree(d_input);
+    cudaFree(d_output);
 
     printf("transpose_cublas used time:%.3fms\n",cublas_milliseconds/PERFLOOP);
     printf("transpose_v3 used time:%.3fms\n",my_milliseconds/PERFLOOP);
